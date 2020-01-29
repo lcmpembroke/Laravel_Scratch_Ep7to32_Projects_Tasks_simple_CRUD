@@ -7,17 +7,13 @@ use \App\Project;
 use Illuminate\Http\Request;
 
 // This file is before the "Cleaner Controllers and Mass Assignment Concerns" episode 14...
-class ProjectsController extends Controller
+class ZZ_ProjectsController extends Controller
 {
     public function index()
     {
         $projects = Project::all();
-        
-        // view is in projects directory in file called index
+    
         return view('projects.index', ['projects' => $projects]);
-        
-        //alternative way
-        //return view('projects.index', compact('projects'));
     }
 
     public function create()

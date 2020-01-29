@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
@@ -27,21 +30,14 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        // $gate->before(function($user){
-        //     // return $user->isAdmin(); or user->role() == "admin"
-        //     // for now, just hardcoding....so 
-        //     return $user->id == 4; // thi is the id of admin in this for sake of tutorial!!
-        // });
-
-        Gate::before(function($user){
-            // return $user->isAdmin(); or user->role() == "admin"
-            // for now, just hardcoding....so 
-            return $user->id == 4; // thi is the id of admin in this for sake of tutorial!!
+        // NOTES: Gate is to do with authorization (permissions) rather than authentication (user logged in)
+        //      : returning FALSE from this Gate check would stop all further authorization checks e.g. policies which we don't want...
+        Gate::before(function($user) {            
+            // hardcoding a "super admin" user to have the word "test" in their email so they don't go through the other checks in the Project Policy!
+            if (strpos($user->email,"test") !== false    ) {
+                return true;
+            }
         });
 
-
-        // Gate::before(function($user){
-        //     return $user->isAdmin();
-        // });
     }
 }

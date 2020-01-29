@@ -49507,8 +49507,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/lcppembroke/code-laravel/LaravelFromScratch/projectEp7/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/lcppembroke/code-laravel/LaravelFromScratch/projectEp7/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/lcppembroke/code-laravel/Laracasts_Laravel5.7/Laravel_Scratch_Ep7to32_Projects_Tasks_simple_CRUD/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/lcppembroke/code-laravel/Laracasts_Laravel5.7/Laravel_Scratch_Ep7to32_Projects_Tasks_simple_CRUD/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

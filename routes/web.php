@@ -2,7 +2,6 @@
 
 use Illuminate\Filesystem\Filesystem;
 use App\Services\Twitter;
-//use App\Repositories\UserRepository;
 
 
 /*
@@ -17,40 +16,25 @@ use App\Services\Twitter;
 */
 
 Route::get('/', function (Twitter $twitter) {
-
     //dd($twitter);
     //return view('welcome');
     return redirect('/projects');
 });
 
 // Laravel resource routing assigns the typical "CRUD" routes to a controller 
-// with a single line of code...i.e.shortcut to do all of the below...!
-//Route::resource('projects', 'ProjectsController');
-
-Route::resource('projects', 'ProjectsController')->middleware('can:update,project');
+//Note that in middleware, 'project' corresponds to the route parameter (see using php artisan route:list...in the curly braces)
+Route::resource('projects', 'ProjectsController')->middleware('can:create,App\Project');
 
 Route::post('/projects/{project}/tasks', 'ProjectTasksController@store');
 
-// Removed as now using CompletedTasksController
-//Route::patch('/tasks/{task}', 'ProjectTasksController@update');
-
+// Removed    Route::patch('/tasks/{task}', 'ProjectTasksController@update');    as now using CompletedTasksController:
 Route::post('completed-tasks/{task}','CompletedTasksController@store');
 Route::delete('completed-tasks/{task}','CompletedTasksController@destroy');
 
-
-// php artisan route:list will review all registered routes for this application
-//
-// Route::get('/projects', 'ProjectsController@index');
-// Route::get('/projects/create', 'ProjectsController@create');
-// Route::get('/projects/{project}', 'ProjectsController@show');
-// Route::post('/projects', 'ProjectsController@store');
-// Route::get('/projects/{project}/edit', 'ProjectsController@edit');
-// Route::patch('/projects/{project}', 'ProjectsController@update');
-// Route::delete('/projects/{project}', 'ProjectsController@destroy');
-
-
-// Can generate the boilerplate controller code too using
-// $ php artisan make:controller PostsController -r
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::fallback(function () {
+    return view('errors.404');
+});

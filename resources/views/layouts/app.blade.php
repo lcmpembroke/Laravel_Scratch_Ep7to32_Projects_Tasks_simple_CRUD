@@ -33,7 +33,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                        <a class="nav-link" href="{{ route('home') }}">{{ __('Home') }}</a>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -72,9 +72,26 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="py-4 container">
             @yield('content')
         </main>
+
+        @guest
+            <div class="container m-t-md" >
+                <a href="{{ url('/register') }}" >Register</a>
+            </div>
+        @else
+            <div class="container m-t-md" >
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/projects/">My projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/projects/create">Create new project</a>
+                    </li>
+                </ul>
+            </div>
+        @endguest        
     </div>
 </body>
 </html>

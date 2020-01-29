@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.app')
 
 @section('content')
     <h1>Projects</h1>
@@ -14,8 +14,6 @@
     </ul>
 
     <br>
-    <p>
-        <a href="/projects/create">Create new project</a>
-    </p>  
+    @include('errors')    
 @endsection
 

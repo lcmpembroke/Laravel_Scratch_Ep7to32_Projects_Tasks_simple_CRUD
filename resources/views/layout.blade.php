@@ -56,6 +56,9 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+            .m-t-md {
+                margin-top: 30px;
+            }
         </style>
     <title></title>
 </head>
@@ -63,6 +66,16 @@
     <div class="container">
         @yield('content')
     </div>
+    @guest
+        <div class="container m-t-md" >
+            <a href="{{ url('/register') }}" >Register</a>
+        </div>
+    @else
+    <div class="container">
+        <a href="{{ url('/projects') }}">Projects</a>
+    </div>
+    @endguest
+
    
 </body>
 </html>
